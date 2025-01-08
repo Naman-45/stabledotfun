@@ -1,14 +1,20 @@
-{
+/**
+ * Program IDL in camelCase format in order to be used in JS/TS.
+ *
+ * Note that this is only a type helper and is not the actual IDL. The original
+ * IDL can be found at `target/idl/basic.json`.
+ */
+export type Stablefun = {
   "address": "6z68wfurCMYkZG51s1Et9BJEd9nJGUusjHXNt4dGbNNF",
   "metadata": {
-    "name": "basic",
+    "name": "stablefun",
     "version": "0.1.0",
     "spec": "0.1.0",
     "description": "Created with Anchor"
   },
   "instructions": [
     {
-      "name": "initialize_mint",
+      "name": "initializeMint",
       "discriminator": [
         209,
         42,
@@ -36,7 +42,7 @@
               },
               {
                 "kind": "arg",
-                "path": "target_currency"
+                "path": "targetCurrency"
               },
               {
                 "kind": "account",
@@ -56,7 +62,7 @@
               },
               {
                 "kind": "arg",
-                "path": "target_currency"
+                "path": "targetCurrency"
               },
               {
                 "kind": "account",
@@ -66,11 +72,11 @@
           }
         },
         {
-          "name": "system_program",
+          "name": "systemProgram",
           "address": "11111111111111111111111111111111"
         },
         {
-          "name": "token_program",
+          "name": "tokenProgram",
           "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
         }
       ],
@@ -79,12 +85,12 @@
           "name": "args",
           "type": {
             "defined": {
-              "name": "CreateMintAccountArgs"
+              "name": "createMintAccountArgs"
             }
           }
         },
         {
-          "name": "target_currency",
+          "name": "targetCurrency",
           "type": "string"
         }
       ]
@@ -92,42 +98,22 @@
   ],
   "accounts": [
     {
-      "name": "MintConfig",
+      "name": "config",
       "discriminator": [
-        168,
-        252,
-        88,
-        182,
-        219,
-        205,
-        39,
-        53
+        155,
+        12,
+        170,
+        224,
+        30,
+        250,
+        204,
+        130
       ]
     }
   ],
   "types": [
     {
-      "name": "CreateMintAccountArgs",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "name",
-            "type": "string"
-          },
-          {
-            "name": "symbol",
-            "type": "string"
-          },
-          {
-            "name": "uri",
-            "type": "string"
-          }
-        ]
-      }
-    },
-    {
-      "name": "MintConfig",
+      "name": "config",
       "type": {
         "kind": "struct",
         "fields": [
@@ -136,7 +122,7 @@
             "type": "pubkey"
           },
           {
-            "name": "targer_fiat_currency",
+            "name": "targerFiatCurrency",
             "type": "string"
           },
           {
@@ -156,15 +142,35 @@
             "type": "string"
           },
           {
-            "name": "mint_bump",
+            "name": "mintBump",
             "type": "u8"
           },
           {
-            "name": "config_bump",
+            "name": "configBump",
             "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "createMintAccountArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "name": "uri",
+            "type": "string"
           }
         ]
       }
     }
   ]
-}
+};

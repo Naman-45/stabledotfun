@@ -1,6 +1,6 @@
 import * as anchor from '@coral-xyz/anchor';
 import { Program } from '@coral-xyz/anchor';
-import { Basic } from '../target/types/basic';
+import { Basic } from '../target/types/stablefun';
 
 describe('basic', () => {
   // Configure the client to use the local cluster.

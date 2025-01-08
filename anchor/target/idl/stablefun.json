@@ -1,7 +1,7 @@
 {
   "address": "6z68wfurCMYkZG51s1Et9BJEd9nJGUusjHXNt4dGbNNF",
   "metadata": {
-    "name": "basic",
+    "name": "stablefun",
     "version": "0.1.0",
     "spec": "0.1.0",
     "description": "Created with Anchor"
@@ -92,42 +92,22 @@
   ],
   "accounts": [
     {
-      "name": "MintConfig",
+      "name": "Config",
       "discriminator": [
-        168,
-        252,
-        88,
-        182,
-        219,
-        205,
-        39,
-        53
+        155,
+        12,
+        170,
+        224,
+        30,
+        250,
+        204,
+        130
       ]
     }
   ],
   "types": [
     {
-      "name": "CreateMintAccountArgs",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "name",
-            "type": "string"
-          },
-          {
-            "name": "symbol",
-            "type": "string"
-          },
-          {
-            "name": "uri",
-            "type": "string"
-          }
-        ]
-      }
-    },
-    {
-      "name": "MintConfig",
+      "name": "Config",
       "type": {
         "kind": "struct",
         "fields": [
@@ -162,6 +142,26 @@
           {
             "name": "config_bump",
             "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CreateMintAccountArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "name": "uri",
+            "type": "string"
           }
         ]
       }
