@@ -1,6 +1,6 @@
 'use client';
 
-import { BASIC_PROGRAM_ID as programId, getBasicProgram } from '@project/anchor'
+import { STABLEFUN_PROGRAM_ID as programId, getStableFunProgram } from '@project/anchor'
 import { useConnection } from '@solana/wallet-adapter-react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
@@ -25,7 +25,7 @@ export function useBasicProgram() {
     mutationKey: ['basic', 'greet', { cluster }],
     mutationFn: () => program.methods.greet().rpc(),
     onSuccess: (signature) => {
-      transactionToast(signature);
+      transactionToast(signature: string);
     },
     onError: () => toast.error('Failed to run program'),
   });

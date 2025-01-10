@@ -8,6 +8,722 @@
   },
   "instructions": [
     {
+      "name": "burn_stablecoins_and_redeem_bonds",
+      "discriminator": [
+        74,
+        165,
+        246,
+        238,
+        140,
+        136,
+        149,
+        222
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "collateral_account",
+            "config"
+          ]
+        },
+        {
+          "name": "collateral_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  108,
+                  108,
+                  97,
+                  116,
+                  101,
+                  114,
+                  97,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "stablecoin_mint"
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "config.name",
+                "account": "MintConfig"
+              },
+              {
+                "kind": "account",
+                "path": "config.target_fiat_currency",
+                "account": "MintConfig"
+              },
+              {
+                "kind": "account",
+                "path": "config.signer",
+                "account": "MintConfig"
+              }
+            ]
+          }
+        },
+        {
+          "name": "stablecoin_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "stablecoin_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          },
+          "relations": [
+            "collateral_account"
+          ]
+        },
+        {
+          "name": "stablecoin_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "config.name",
+                "account": "MintConfig"
+              },
+              {
+                "kind": "account",
+                "path": "config.target_fiat_currency",
+                "account": "MintConfig"
+              },
+              {
+                "kind": "account",
+                "path": "config.signer",
+                "account": "MintConfig"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_stablebond_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deposited_stablebond_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "deposited_stablebond_mint",
+          "writable": true
+        },
+        {
+          "name": "collateral_bond_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "collateral_account"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deposited_stablebond_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          },
+          "relations": [
+            "collateral_account"
+          ]
+        },
+        {
+          "name": "token_program",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "deposit_bonds_and_mint_stablecoins",
+      "discriminator": [
+        92,
+        149,
+        77,
+        16,
+        102,
+        126,
+        24,
+        188
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "collateral_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  108,
+                  108,
+                  97,
+                  116,
+                  101,
+                  114,
+                  97,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "stablecoin_mint"
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "config.name",
+                "account": "MintConfig"
+              },
+              {
+                "kind": "account",
+                "path": "config.target_fiat_currency",
+                "account": "MintConfig"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_stablebond_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deposited_stablebond_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "deposited_stablebond_mint",
+          "writable": true
+        },
+        {
+          "name": "stablecoin_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "config.name",
+                "account": "MintConfig"
+              },
+              {
+                "kind": "account",
+                "path": "config.target_fiat_currency",
+                "account": "MintConfig"
+              },
+              {
+                "kind": "account",
+                "path": "config.signer",
+                "account": "MintConfig"
+              }
+            ]
+          }
+        },
+        {
+          "name": "stablecoin_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "stablecoin_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "collateral_bond_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "collateral_bond_token_account"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "deposited_stablebond_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
       "name": "initialize_mint",
       "discriminator": [
         209,
@@ -46,6 +762,38 @@
           }
         },
         {
+          "name": "all_mints",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  116,
+                  97,
+                  108,
+                  95,
+                  109,
+                  105,
+                  110,
+                  116,
+                  115,
+                  95,
+                  99,
+                  114,
+                  101,
+                  97,
+                  116,
+                  101,
+                  100
+                ]
+              }
+            ]
+          }
+        },
+        {
           "name": "config",
           "writable": true,
           "pda": {
@@ -57,10 +805,6 @@
               {
                 "kind": "arg",
                 "path": "target_currency"
-              },
-              {
-                "kind": "account",
-                "path": "signer"
               }
             ]
           }
@@ -86,11 +830,28 @@
         {
           "name": "target_currency",
           "type": "string"
+        },
+        {
+          "name": "rate",
+          "type": "i16"
         }
       ]
     }
   ],
   "accounts": [
+    {
+      "name": "Collateral",
+      "discriminator": [
+        123,
+        130,
+        234,
+        63,
+        255,
+        240,
+        255,
+        92
+      ]
+    },
     {
       "name": "MintConfig",
       "discriminator": [
@@ -103,9 +864,100 @@
         39,
         53
       ]
+    },
+    {
+      "name": "MintsCreated",
+      "discriminator": [
+        15,
+        223,
+        128,
+        136,
+        148,
+        166,
+        141,
+        8
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InsufficientBondBalance",
+      "msg": "Insufficient StableBond Balance"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidAuthority",
+      "msg": "Invalid Authority"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidDepositor",
+      "msg": "Invalid Depositor"
+    },
+    {
+      "code": 6003,
+      "name": "InvalidCollateralAccount",
+      "msg": "Invalid Collateral Account"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidStablecoinAccount",
+      "msg": "Invalid Stablecoin Account"
+    },
+    {
+      "code": 6005,
+      "name": "InsufficientStablecoinBalance",
+      "msg": "Insufficient Stablecoin Balance"
+    },
+    {
+      "code": 6006,
+      "name": "InsufficientCollateralBalance",
+      "msg": "Insufficient Collateral Balance"
+    },
+    {
+      "code": 6007,
+      "name": "ArithmeticError",
+      "msg": "Arithmetic Error"
     }
   ],
   "types": [
+    {
+      "name": "Collateral",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "signer",
+            "type": "pubkey"
+          },
+          {
+            "name": "collateral_bond_token_account",
+            "type": "pubkey"
+          },
+          {
+            "name": "stablecoin_token_account",
+            "type": "pubkey"
+          },
+          {
+            "name": "stablebond_balance",
+            "type": "u64"
+          },
+          {
+            "name": "stablecoin_minted",
+            "type": "u64"
+          },
+          {
+            "name": "collateral_bump",
+            "type": "u8"
+          },
+          {
+            "name": "is_initialized",
+            "type": "bool"
+          }
+        ]
+      }
+    },
     {
       "name": "CreateMintAccountArgs",
       "type": {
@@ -132,11 +984,11 @@
         "kind": "struct",
         "fields": [
           {
-            "name": "owner",
+            "name": "signer",
             "type": "pubkey"
           },
           {
-            "name": "targer_fiat_currency",
+            "name": "target_fiat_currency",
             "type": "string"
           },
           {
@@ -156,12 +1008,58 @@
             "type": "string"
           },
           {
+            "name": "interest_rate",
+            "type": "i16"
+          },
+          {
             "name": "mint_bump",
             "type": "u8"
           },
           {
             "name": "config_bump",
             "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MintInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "public_key",
+            "type": "pubkey"
+          },
+          {
+            "name": "apy",
+            "type": "i16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MintsCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "all_mints",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "MintInfo"
+                }
+              }
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "is_initialized",
+            "type": "bool"
           }
         ]
       }

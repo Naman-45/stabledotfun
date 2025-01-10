@@ -1,12 +1,12 @@
 import * as anchor from '@coral-xyz/anchor';
 import { Program } from '@coral-xyz/anchor';
-import { Basic } from '../target/types/stablefun';
+import { Stablefun } from '../target/types/stablefun';
 
 describe('basic', () => {
   // Configure the client to use the local cluster.
   anchor.setProvider(anchor.AnchorProvider.env());
 
-  const program = anchor.workspace.Basic as Program<Basic>;
+  const program = anchor.workspace.Basic as Program<Stablefun>;
 
   it('should run the program', async () => {
     // Add your test here.

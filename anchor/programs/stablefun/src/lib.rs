@@ -12,8 +12,8 @@ use instructions::*;
 pub mod basic {
     use super::*;
 
-    pub fn initialize_mint(ctx: Context<InitializeMint>, args: CreateMintAccountArgs, target_currency: String) -> Result<()> {
-        create_stablecoin(ctx, args, target_currency)?;
+    pub fn initialize_mint(ctx: Context<InitializeMint>, args: CreateMintAccountArgs, target_currency: String, rate: i16) -> Result<()> {
+        create_stablecoin(ctx, args, target_currency, rate)?;
         Ok(())
     }
 

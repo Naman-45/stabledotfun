@@ -13,6 +13,7 @@ pub struct MintConfig {
     pub icon: String,
     #[max_len(10)]
     pub symbol: String,
+    pub interest_rate: i16,
     pub mint_bump: u8,
     pub config_bump:u8
 }
@@ -29,4 +30,18 @@ pub struct Collateral {
     pub is_initialized: bool
 }
 
+#[account]
+#[derive(InitSpace, Debug)]
+pub struct MintsCreated {
+    #[max_len(100)]
+    pub all_mints: Vec<MintInfo>,
+    pub bump: u8,
+    pub is_initialized: bool
+}
 
+#[account]
+#[derive(InitSpace, Debug)]
+pub struct MintInfo {
+    pub public_key: Pubkey,
+    pub apy: i16,
+}

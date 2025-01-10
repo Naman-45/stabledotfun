@@ -22,7 +22,6 @@ pub struct DepositAndMint<'info> {
         seeds = [
             config.name.as_bytes(),
             config.target_fiat_currency.as_bytes(),
-            config.signer.as_ref()
         ],
         bump,
         has_one = signer @ ErrorCode::InvalidAuthority
