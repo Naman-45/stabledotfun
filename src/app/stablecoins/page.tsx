@@ -132,7 +132,11 @@ export default function Stablecoins() {
                   </Button>
                 </div>
               </div>
-              <MintStablecoinModal stablecoin={coin} />
+              <MintStablecoinModal stablecoin={{
+                name: coin.name ?? '',
+                symbol: coin.symbol ?? '',
+                mintAddress: coin.mintAddress ?? ''
+              }} />
             </CardContent>
           </Card>
         ))}
